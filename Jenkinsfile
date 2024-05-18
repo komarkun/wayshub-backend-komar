@@ -111,7 +111,9 @@ pipeline {
         }
 	stage('Discord Notifier from Extension plugins'){
 	   steps {
-	      discordSend description: 'ini dari desckription', footer: 'ini dari footer', image: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', link: 'env.BUILD_URL', result: 'SUCCESS', scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', thumbnail: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', title: 'env.JOB_NAME', webhookURL: 'https://discordapp.com/api/webhooks/1241391254621782171/MuahAQIXQDCBoR5gXvhK5po-WAxz9QtGcWOGz8-pwdxFOMwwzYPS_dHQyYu_oKktqggy'
+	      discordSend(
+ description: 'ini dari desckription', footer: 'ini dari footer', image: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', link: 'env.BUILD_URL', result: 'SUCCESS', scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', thumbnail: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', title: 'env.JOB_NAME', webhookURL: 'https://discordapp.com/api/webhooks/1241391254621782171/MuahAQIXQDCBoR5gXvhK5po-WAxz9QtGcWOGz8-pwdxFOMwwzYPS_dHQyYu_oKktqggy'
+		)
 		}
 	}
     }
