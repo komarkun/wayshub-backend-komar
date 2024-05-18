@@ -1,13 +1,14 @@
 def secret = 'vm'
-def directory = '/home/komarhidayat0/wayshub/wayshub-backend'
 def branch = 'master'
 def namebuild = 'wayshub-backend-prod:latest'
 def serverCredentialsId = 'server'
+def directoryCredentialsId = 'directory'
 
 pipeline {
     agent any
     environment {
 	SERVER = credentials("${serverCredentialsId}")
+	DIRECTORY = credentials("${directoryCredentialsId}")
     }
     stages {
         stage ('pull new code') {
@@ -15,7 +16,7 @@ pipeline {
                 sshagent([secret]) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
-                            cd ${directory}
+                            cd ${DIRECTORY}
                             git pull origin ${branch}
                             echo "Selesai Pulling!"
                             exit
@@ -30,7 +31,7 @@ pipeline {
                 sshagent([secret]) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
-                            cd ${directory}
+                            cd ${DIRECTORY}
                             docker build -t ${namebuild} .
                             echo "Selesai Building!"
                             exit
@@ -45,7 +46,7 @@ pipeline {
                 sshagent([secret]) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
-                            cd ${directory}
+                            cd ${DIRECTORY}
                             cd ../
                             docker compose -f docker-compose-backend.yaml down
                             docker compose -f docker-compose-backend.yaml up -d
