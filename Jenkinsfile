@@ -80,15 +80,17 @@ pipeline {
             }
         }
 
-	steps {
-           script {
-              def message = "Deployment of ${NAMEBUILD} is complete and tested successfully!"
-                  sh """
-                    curl -H "Content-Type: application/json" \
-                     -X POST \
-                     -d '{"content": "${message}"}' \
-                     ${DISCORD_WEBHOOK_URL}
-                  """
+	stage('Send notification to Discord') {
+            steps {
+                script {
+                    def message = "Deployment of ${NAMEBUILD} is complete and tested successfully!"
+                    sh """
+                        curl -H "Content-Type: application/json" \
+                            -X POST \
+                            -d '{"content": "${message}"}' \
+                            ${DISCORD_WEBHOOK_URL}
+                    """
+                }
             }
         }
     }
