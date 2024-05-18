@@ -1,5 +1,5 @@
 def secret = 'vm'
-def server = 'komarhidayat0@34.101.125.107'
+def server = 'server'
 def directory = '/home/komarhidayat0/wayshub/wayshub-backend'
 def branch = 'master'
 def namebuild = 'wayshub-backend-prod:latest'
