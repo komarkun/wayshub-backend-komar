@@ -5,6 +5,7 @@ def directoryCredentialsId = 'directory'
 def dockerLoginCredentialsId = 'docker-login'
 def nameBuildCredentialsId = 'namebuild'
 def discordurlCredentialsId = 'discord-webhook-url'
+def appurlCredentialsId = 'app-url'
 
 pipeline {
     agent any
@@ -14,6 +15,7 @@ pipeline {
 	DOCKERLOGIN = credentials("${dockerLoginCredentialsId}")
 	NAMEBUILD = credentials("${nameBuildCredentialsId}")
 	DISCORD_WEBHOOK_URL = credentials("${discordurlCredentialsId}")
+	APPURL = credentials("${appurlCredentialsId}")
     }
     stages {
         stage ('pull new code') {
@@ -39,6 +41,20 @@ pipeline {
                             cd ${DIRECTORY}
                             docker build -t ${NAMEBUILD} .
                             echo "Selesai Building!"
+                            exit
+                        EOF
+                    """
+                }
+            }
+        }
+
+	stage('Test the app') {
+            steps {
+                sshagent([secret]) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
+                            wget --spider --timeout=30 --tries=1 ${APPURL}
+                            echo "Selesai Testing!"
                             exit
                         EOF
                     """
