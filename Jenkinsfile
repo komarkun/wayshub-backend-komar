@@ -61,6 +61,22 @@ pipeline {
 
             }
         }
+	stage ('Push to Docker Hub') {
+            steps {
+                sshagent([secret]) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
+                            cd ${DIRECTORY}
+			    ${DOCKERLOGIN}
+			    docker push ${NAMEBUILD}
+                            echo "Selesai Push Images To Docker Registries"
+                            exit
+                        EOF
+                    """
+                }
+
+            }
+        }
     }
 }
 
