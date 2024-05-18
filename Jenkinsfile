@@ -29,7 +29,7 @@ pipeline {
             steps {
                 sshagent([secret]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
                             cd ${directory}
                             docker build -t ${namebuild} .
                             echo "Selesai Building!"
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 sshagent([secret]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
                             cd ${directory}
                             cd ../
                             docker compose -f docker-compose-backend.yaml down
