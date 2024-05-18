@@ -98,13 +98,13 @@ pipeline {
 	stage('Discord Notifier') {
             steps {
                 script {
-                    discordSend description: 'ini dari deskripsi', 
-                                footer: 'ini dari footer', 
-                                image: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', 
+                    discordSend description: 'Jobs CI/CD aplikasi backend', 
+                                footer: 'Healing atuh', 
+                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
                                 link: env.BUILD_URL, 
                                 result: currentBuild.currentResult, 
                                 scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
-                                thumbnail: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', 
+                                thumbnail: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
                                 title: env.JOB_NAME, 
                                 webhookURL: DISCORD_WEBHOOK_URL
                 }
