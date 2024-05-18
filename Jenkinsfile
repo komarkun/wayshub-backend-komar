@@ -4,6 +4,7 @@ def serverCredentialsId = 'server'
 def directoryCredentialsId = 'directory'
 def dockerLoginCredentialsId = 'docker-login'
 def nameBuildCredentialsId = 'namebuild'
+def discordurlCredentialsId = 'discord-webhook-url'
 
 pipeline {
     agent any
@@ -12,6 +13,7 @@ pipeline {
 	DIRECTORY = credentials("${directoryCredentialsId}")
 	DOCKERLOGIN = credentials("${dockerLoginCredentialsId}")
 	NAMEBUILD = credentials("${nameBuildCredentialsId}")
+	DISCORD_WEBHOOK_URL = credentials("${discordurlCredentialsId}")
     }
     stages {
         stage ('pull new code') {
@@ -75,6 +77,18 @@ pipeline {
                     """
                 }
 
+            }
+        }
+
+	steps {
+           script {
+              def message = "Deployment of ${NAMEBUILD} is complete and tested successfully!"
+                  sh """
+                    curl -H "Content-Type: application/json" \
+                     -X POST \
+                     -d '{"content": "${message}"}' \
+                     ${DISCORD_WEBHOOK_URL}
+                  """
             }
         }
     }
