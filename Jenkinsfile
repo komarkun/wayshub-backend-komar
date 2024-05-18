@@ -59,9 +59,6 @@ pipeline {
                         EOF
                     """
                 }
-		
-		 discordSend description: 'test desc', footer: '', image: 'https://t3.ftcdn.net/jpg/02/93/59/72/360_F_293597295_lhk0X8DKsYarhMYguuWPP15qOtKOz0Qa.jpg', link: '', result: 'SUCCESS', scmWebUrl: '', thumbnail: '', title: 'Discord Notif', webhookURL: '${DISCORD_WEBHOOK_URL}'
-
             }
         }
 
