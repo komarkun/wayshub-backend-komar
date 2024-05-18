@@ -2,7 +2,7 @@ def secret = 'vm'
 def directory = '/home/komarhidayat0/wayshub/wayshub-backend'
 def branch = 'master'
 def namebuild = 'wayshub-backend-prod:latest'
-def serverAddressCredentialsId = 'server'
+def serverCredentialsId = 'server'
 
 pipeline {
     agent any
