@@ -7,7 +7,7 @@ def serverCredentialsId = 'server'
 pipeline {
     agent any
     environment {
-	SERVER = credentials(serverCredentialsId)
+	SERVER = credentials("${serverCredentialsId}")
     }
     stages {
         stage ('pull new code') {
