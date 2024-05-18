@@ -1,17 +1,20 @@
 def secret = 'vm'
-def server = 'server'
 def directory = '/home/komarhidayat0/wayshub/wayshub-backend'
 def branch = 'master'
 def namebuild = 'wayshub-backend-prod:latest'
+def serverAddressCredentialsId = 'server'
 
 pipeline {
     agent any
+    environment {
+	SERVER = credentials(serverCredentialsId)
+    }
     stages {
         stage ('pull new code') {
             steps {
                 sshagent([secret]) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no ${server} << EOF
+                        ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
                             cd ${directory}
                             git pull origin ${branch}
                             echo "Selesai Pulling!"
