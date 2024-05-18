@@ -1,14 +1,17 @@
 def secret = 'vm'
 def branch = 'master'
-def namebuild = 'wayshub-backend-prod:latest'
 def serverCredentialsId = 'server'
 def directoryCredentialsId = 'directory'
+def dockerLoginCredentialsId = 'docker-login'
+def nameBuildCredentialsId = 'namebuild'
 
 pipeline {
     agent any
     environment {
 	SERVER = credentials("${serverCredentialsId}")
 	DIRECTORY = credentials("${directoryCredentialsId}")
+	DOCKERLOGIN = credentials("${dockerLoginCredentialsId}")
+	NAMEBUILD = credentials("${nameBuildCredentialsId}")
     }
     stages {
         stage ('pull new code') {
@@ -32,7 +35,7 @@ pipeline {
                     sh """
                         ssh -o StrictHostKeyChecking=no ${SERVER} << EOF
                             cd ${DIRECTORY}
-                            docker build -t ${namebuild} .
+                            docker build -t ${NAMEBUILD} .
                             echo "Selesai Building!"
                             exit
                         EOF
