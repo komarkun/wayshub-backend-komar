@@ -32,6 +32,21 @@ pipeline {
                 }
             }
         }
+	stage('Pull Notifier') {
+            steps {
+                script {
+                    discordSend description: 'Pull notif', 
+                                footer: 'Pull code from github berhasil', 
+                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                link: env.BUILD_URL, 
+                                result: currentBuild.currentResult, 
+                                scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
+                                thumbnail: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                title: env.JOB_NAME, 
+                                webhookURL: DISCORD_WEBHOOK_URL
+                }
+            }
+        }
 
         stage ('build the code') {
             steps {
@@ -47,6 +62,21 @@ pipeline {
                 }
             }
         }
+	stage('Build Notifier') {
+            steps {
+                script {
+                    discordSend description: 'Build Notif', 
+                                footer: 'Build Berhasill', 
+                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                link: env.BUILD_URL, 
+                                result: currentBuild.currentResult, 
+                                scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
+                                thumbnail: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                title: env.JOB_NAME, 
+                                webhookURL: DISCORD_WEBHOOK_URL
+                }
+            }
+        }
 
 	stage('Test the app') {
             steps {
@@ -58,6 +88,21 @@ pipeline {
                             exit
                         EOF
                     """
+                }
+            }
+        }
+	stage('Test Notifier') {
+            steps {
+                script {
+                    discordSend description: 'Test Notif', 
+                                footer: 'Runs test wget spider berhasil', 
+                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                link: env.BUILD_URL, 
+                                result: currentBuild.currentResult, 
+                                scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
+                                thumbnail: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                title: env.JOB_NAME, 
+                                webhookURL: DISCORD_WEBHOOK_URL
                 }
             }
         }
@@ -77,6 +122,21 @@ pipeline {
                     """
                 }
 
+            }
+        }
+	stage('Deploy Notifier') {
+            steps {
+                script {
+                    discordSend description: 'Deploy Notif', 
+                                footer: 'deploy di server berhasil', 
+                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                link: env.BUILD_URL, 
+                                result: currentBuild.currentResult, 
+                                scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
+                                thumbnail: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                title: env.JOB_NAME, 
+                                webhookURL: DISCORD_WEBHOOK_URL
+                }
             }
         }
 	stage ('Push to Docker Hub') {
@@ -100,6 +160,21 @@ pipeline {
                 script {
                     discordSend description: 'Jobs CI/CD aplikasi backend', 
                                 footer: 'Healing atuh', 
+                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                link: env.BUILD_URL, 
+                                result: currentBuild.currentResult, 
+                                scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
+                                thumbnail: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                title: env.JOB_NAME, 
+                                webhookURL: DISCORD_WEBHOOK_URL
+                }
+            }
+        }
+	stage('Push Notifier') {
+            steps {
+                script {
+                    discordSend description: 'Push Notif', 
+                                footer: 'Berhasil push ke docker hub', 
                                 image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
                                 link: env.BUILD_URL, 
                                 result: currentBuild.currentResult, 
