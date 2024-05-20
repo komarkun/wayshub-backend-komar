@@ -37,7 +37,7 @@ pipeline {
                 script {
                     discordSend description: 'Pull notif', 
                                 footer: 'Pull code from github berhasil', 
-                                image: 'https://t4.ftcdn.net/jpg/00/88/85/97/360_F_88859742_3pcsH0QNgseXjj2Y8HeZSXJbHUb19bx2.jpg', 
+                                image: 'https://cdn.discordapp.com/attachments/1241391101848322081/1242064109566951485/KomarKUN.png?ex=664c79d8&is=664b2858&hm=0321fbe451c67094d13a0f471d48ae4be8b25feb14f3ae0a23000ec0e29e7d59&', 
                                 link: env.BUILD_URL, 
                                 result: currentBuild.currentResult, 
                                 scmWebUrl: 'https://github.com/komarkun/wayshub-backend-komar.git', 
